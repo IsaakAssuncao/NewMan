@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "5f6dad18-841c-4cba-9fad-0a9db5cbed16",
+		"name": "DEXTRA - DASA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET_USER_INFO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"if (pm.response.to.have.status(200)){\r",
+							"    let jsonData = JSON.parse(responseBody);\r",
+							"    //pm.environment.set(\"id\",jsonData.data.getUserInfo.id);\r",
+							"\r",
+							"pm.test(\"Response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response status is 'OK'\", function () {\r",
+							"    pm.response.to.be.ok;\r",
+							"});\r",
+							"pm.test(\"Response body é Json\", function () {\r",
+							"     pm.response.to.be.withBody;\r",
+							"     pm.response.to.be.json; \r",
+							"});\r",
+							"pm.test(\"Response body não tem erro\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"errors\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"id é '2542285'\", function () {\r",
+							"    pm.expect(jsonData.data.getUserInfo.id).to.eql(\"2542285\");\r",
+							"});\r",
+							"pm.test(\"name é 'John Smith'\", function () {\r",
+							"    pm.expect(jsonData.data.getUserInfo.name).to.eql(\"John Smith\");\r",
+							"});\r",
+							"pm.test(\"socialName é 'null'\", function () {\r",
+							"    pm.expect(jsonData.data.getUserInfo.socialName).to.eql(null);\r",
+							"});\r",
+							"pm.test(\"personType é 'PACIENTE'\", function () {\r",
+							"    pm.expect(jsonData.data.getUserInfo.personType).to.eql(\"PACIENTE\");\r",
+							"});\r",
+							"pm.test(\"externalId é 'R2542285'\", function () {\r",
+							"    pm.expect(jsonData.data.getUserInfo.externalId).to.eql(\"R2542285\");\r",
+							"});\r",
+							"\r",
+							"//pm.environment.unset(\"id\")\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJVWTN5SUh4LVRxMjJiTmt1UmN3MTF3ZWlxemZmY2FEbHdjeWlfWWV2aG00In0.eyJqdGkiOiJhMjllMDk1Yy0wMzMyLTRlMjUtYjUwZi0yNDQ4MzA3YjAyODQiLCJleHAiOjE5MDgxMjQzMjYsIm5iZiI6MCwiaWF0IjoxNjA4MTI0MDI2LCJpc3MiOiJodHRwczovL2FjZXNzby5henItaG1sLmRhc2FleHAuaW8vYXV0aC9yZWFsbXMvcGVzc29hcyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJmOjNiZTM2ZDVhLTNjZDAtNDgwZC1hMWNiLWQ4ZWU4MDFiODY4MDp0ZXN0ZSIsInR5cCI6IkJlYXJlciIsImF6cCI6InBhY2llbnRlIiwiYXV0aF90aW1lIjowLCJzZXNzaW9uX3N0YXRlIjoiNGNjNTk4MzYtNjRiNy00ODBhLWFjMTQtMWE0YjE4NDJmN2IyIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyInKiciXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJKb2huIFNtaXRoIEpvaG4gU21pdGgiLCJleHRlcm5hbElkIjoiUjI1NDIyODUiLCJub21lIjoiSm9obiBTbWl0aCIsImlkIjoyNTQyMjg1LCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ0ZXN0ZSIsImdpdmVuX25hbWUiOiJKb2huIFNtaXRoIiwidXNlck5hbWUiOiJ0ZXN0ZSIsInBlcnNvblR5cGUiOiJQQUNJRU5URSIsImZhbWlseV9uYW1lIjoiSm9obiBTbWl0aCIsImVtYWlsIjoiZXhhbXBsZS5zYW1wbGVAZGFzYS5jb20uYnIifQ.AOvPgVm-HKKN3FKb69W8eunBmqigS3gc0Z3829GD-Wo1lUoPDPC_MwRD98Su6APoahwfOgtXUZ9CjQLWWb2d78H7ceXJqO0TOevr7wKcBuzo0ZAesPS01X2WE-ogw6t6imWczug0tettyDnN12f9VcSeFcpufL9s1XjJoa6sjPfwn2wpcgck6Kr5ht2zWuqG0xSxS3qlMeIL_LRBLNrOw07Sfg5aN-nTJmcwelKkzLnFQdMzySPUj9jQJtrvV9blXtv1wUieG6mfUe3r5q1XslpJsLuhdkxtwp8KUSgEcUFBPoH5Wrm7MdFX8nT0d81iTfr0b0JbzcadF0sNGUWqYA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n  getUserInfo{\r\n    id\r\n    name\r\n    socialName\r\n    personType\r\n    externalId\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://livia-saude-bff.dasa.com.br/",
+					"protocol": "https",
+					"host": [
+						"livia-saude-bff",
+						"dasa",
+						"com",
+						"br"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_USER_INFO",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJVWTN5SUh4LVRxMjJiTmt1UmN3MTF3ZWlxemZmY2FEbHdjeWlfWWV2aG00In0.eyJqdGkiOiJhMjllMDk1Yy0wMzMyLTRlMjUtYjUwZi0yNDQ4MzA3YjAyODQiLCJleHAiOjE5MDgxMjQzMjYsIm5iZiI6MCwiaWF0IjoxNjA4MTI0MDI2LCJpc3MiOiJodHRwczovL2FjZXNzby5henItaG1sLmRhc2FleHAuaW8vYXV0aC9yZWFsbXMvcGVzc29hcyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJmOjNiZTM2ZDVhLTNjZDAtNDgwZC1hMWNiLWQ4ZWU4MDFiODY4MDp0ZXN0ZSIsInR5cCI6IkJlYXJlciIsImF6cCI6InBhY2llbnRlIiwiYXV0aF90aW1lIjowLCJzZXNzaW9uX3N0YXRlIjoiNGNjNTk4MzYtNjRiNy00ODBhLWFjMTQtMWE0YjE4NDJmN2IyIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyInKiciXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJKb2huIFNtaXRoIEpvaG4gU21pdGgiLCJleHRlcm5hbElkIjoiUjI1NDIyODUiLCJub21lIjoiSm9obiBTbWl0aCIsImlkIjoyNTQyMjg1LCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ0ZXN0ZSIsImdpdmVuX25hbWUiOiJKb2huIFNtaXRoIiwidXNlck5hbWUiOiJ0ZXN0ZSIsInBlcnNvblR5cGUiOiJQQUNJRU5URSIsImZhbWlseV9uYW1lIjoiSm9obiBTbWl0aCIsImVtYWlsIjoiZXhhbXBsZS5zYW1wbGVAZGFzYS5jb20uYnIifQ.AOvPgVm-HKKN3FKb69W8eunBmqigS3gc0Z3829GD-Wo1lUoPDPC_MwRD98Su6APoahwfOgtXUZ9CjQLWWb2d78H7ceXJqO0TOevr7wKcBuzo0ZAesPS01X2WE-ogw6t6imWczug0tettyDnN12f9VcSeFcpufL9s1XjJoa6sjPfwn2wpcgck6Kr5ht2zWuqG0xSxS3qlMeIL_LRBLNrOw07Sfg5aN-nTJmcwelKkzLnFQdMzySPUj9jQJtrvV9blXtv1wUieG6mfUe3r5q1XslpJsLuhdkxtwp8KUSgEcUFBPoH5Wrm7MdFX8nT0d81iTfr0b0JbzcadF0sNGUWqYA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n  getUserInfo{\r\n    id\r\n    name\r\n    socialName\r\n    personType\r\n    externalId\r\n    documents{\r\n      type\r\n      issuingOrganization\r\n      value\r\n    }\r\n    contacts{\r\n      contactType\r\n      value\r\n      additionalInf\r\n      principal\r\n    }\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://livia-saude-bff.dasa.com.br/",
+					"protocol": "https",
+					"host": [
+						"livia-saude-bff",
+						"dasa",
+						"com",
+						"br"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
